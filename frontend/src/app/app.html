@@ -1,0 +1,56 @@
+<div class="h-screen flex flex-col font-sans bg-gray-950 text-gray-100 overflow-hidden">
+  <!-- Navbar -->
+  <nav class="bg-gray-900 border-b border-gray-800 p-4 shrink-0 shadow-lg relative z-20">
+    <div class="container mx-auto flex justify-between items-center">
+      <a routerLink="/menu"
+        class="text-xl font-bold flex items-center hover:text-indigo-400 transition-colors bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+        <span class="material-icons mr-2 text-white">restaurant</span> Gourmet AI
+      </a>
+      <div class="flex items-center space-x-6">
+        <div class="space-x-4">
+          <a routerLink="/menu" routerLinkActive="text-blue-400"
+            class="text-gray-300 hover:text-white transition-colors text-sm uppercase tracking-wider font-semibold">Customer
+            Menu</a>
+          <a routerLink="/admin" routerLinkActive="text-blue-400"
+            class="text-gray-300 hover:text-white transition-colors text-sm uppercase tracking-wider font-semibold">Admin</a>
+        </div>
+
+        <!-- Toggle Chat Button (In Navbar) -->
+        <button (click)="chatService.toggleChat()"
+          class="p-2 rounded-full bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition-all border border-gray-700 hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+          [class.text-blue-400]="chatService.isOpen()" [class.border-blue-500]="chatService.isOpen()">
+          <span class="material-icons">chat</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Area (Split View) -->
+  <div class="flex-1 flex overflow-hidden relative">
+
+    <!-- Router Outlet (Left Pane) -->
+    <div
+      class="flex-1 overflow-auto bg-gray-950 w-full relative z-10 scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-transparent">
+      <router-outlet />
+    </div>
+
+    <!-- Resizer Handle (Only in Docked Mode) -->
+    @if (chatService.isOpen()) {
+    <div (mousedown)="startResizing($event)"
+      class="w-1 bg-gray-800 hover:bg-blue-500 cursor-col-resize transition-colors z-30 shrink-0 flex items-center justify-center group shadow-2xl">
+      <div class="h-8 w-1 bg-gray-600 group-hover:bg-blue-200 rounded-full"></div>
+    </div>
+    }
+
+    <!-- Chat Widget (Docked Pane) -->
+    @if (chatService.isOpen()) {
+    <div [style.width.px]="chatService.width()"
+      class="shrink-0 relative z-20 shadow-[-10px_0_30px_-10px_rgba(0,0,0,0.5)]">
+      <app-chat-widget class="h-full block"></app-chat-widget>
+    </div>
+    }
+  </div>
+
+  <!-- Floating Chat (Always present, toggles its own visibility) -->
+  <app-floating-chat></app-floating-chat>
+</div>

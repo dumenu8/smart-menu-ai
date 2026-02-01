@@ -1,0 +1,40 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+
+# IDEs
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+
+# Backend (Python)
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env
+*.egg-info/
+.pytest_cache/
+backend/images_temp/
+
+# Frontend (Node/Angular)
+node_modules/
+dist/
+.angular/
+coverage/
+*debug.log*
+yarn-error.log
+.sass-cache/
+
+# Docker
+.docker/
+
+# Agentic / AI
+brain/
+artifacts/

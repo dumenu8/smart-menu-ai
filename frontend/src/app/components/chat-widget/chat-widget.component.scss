@@ -1,0 +1,39 @@
+.popup-mode {
+    bottom: 6rem;
+    /* above FAB */
+    right: 1.5rem;
+    width: 350px;
+    height: 500px;
+    max-width: calc(100vw - 3rem);
+    max-height: calc(100vh - 8rem);
+    border-radius: 1.5rem;
+}
+
+.sidebar-mode {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 400px;
+    max-width: 100vw;
+    height: 100vh;
+    border-radius: 1.5rem 0 0 1.5rem;
+    /* Rounded left corners only */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}

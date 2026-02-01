@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+sqlalchemy[asyncio]
+asyncpg
+pydantic
+pydantic-settings
+openai
+sentence-transformers
+python-multipart
+websockets
+numpy
+pgvector

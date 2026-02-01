@@ -1,0 +1,43 @@
+services:
+  # 1. Database
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: menudb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # 2. Backend API
+  backend:
+    build: ./backend
+    # Explicitly use the module path for uvicorn
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./backend:/app
+    environment:
+      DATABASE_URL: postgresql+asyncpg://user:password@db/menudb
+      LM_STUDIO_URL: http://host.docker.internal:1234/v1 # Access host machine LM Studio
+    ports:
+      - "8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - db
+
+  # 3. Database GUI (Adminer)
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+
+
+volumes:
+  pgdata:
