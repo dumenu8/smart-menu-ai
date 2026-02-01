@@ -2,10 +2,7 @@
 
 A proof of concept for next-generation digital menu system enabling customers to explore dishes and get personalized recommendations via an **AI-powered assistant**, while providing restaurant staff with a robust **Admin Dashboard** for real-time menu management.
 
-
-<div align="center">
-  <video src="ai-chat-demo.mp4" width="100%" controls autoplay loop muted></video>
-</div>
+<video src="ai-chat-demo.mp4" width="100%" controls autoplay loop muted></video>
 
 ![Customer Chat Interface](customer-menu-chat-screenshot.png)
 
